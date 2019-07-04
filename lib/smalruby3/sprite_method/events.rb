@@ -16,10 +16,20 @@ module Smalruby3
       end
 
       def broadcast_and_wait(message)
+        id = "1"
         World.instance.targets.each do |o|
+          World.instance.fire_receive_messages[id] ||= []
+          World.instance.fire_receive_messages[id] << o
           o.fire(:receive, message)
+          
+        end
+        loop do
+          if World.instance.fire_receive_messages.empty?
+            break
+          end
+          wait
         end
       end
-    end
+    end 
   end
 end
