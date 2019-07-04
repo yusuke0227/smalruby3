@@ -21,7 +21,6 @@ module Smalruby3
           World.instance.fire_receive_messages[id] ||= []
           World.instance.fire_receive_messages[id] << o
           o.fire(:receive, message)
-          
         end
         loop do
           if World.instance.fire_receive_messages.empty?
@@ -30,6 +29,6 @@ module Smalruby3
           wait
         end
       end
-    end 
+    end
   end
 end
