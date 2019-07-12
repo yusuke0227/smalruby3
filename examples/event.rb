@@ -36,7 +36,7 @@ Sprite.new("スプライト1",
     sleep(1)
     broadcast_and_wait("こんにちは")
     move(10)
-    bounce_if_on_edge
+    #bounce_if_on_edge
   end
 
   self.when(:greater_than, "LOUDNESS", 10) do
@@ -57,5 +57,6 @@ Sprite.new("スプライト1",
 
   self.when(:receive, "こんにちは") do
     self.x += 10
+    sleep(1)
   end
 end
