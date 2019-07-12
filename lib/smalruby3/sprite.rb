@@ -135,13 +135,17 @@ module Smalruby3
     end
 
     def fire(event, *options)
+      threads = []
       if (events = @event_handlers[event])
         events.each do |e|
           if e.options == options
-            @threads << e.call
+            t = e.call
+            @threads << t
+            threads << t
           end
         end
       end
+      threads
     end
 
     def join_threads(wait = false)
